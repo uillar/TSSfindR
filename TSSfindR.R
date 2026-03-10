@@ -14,7 +14,7 @@
 {
   library(tidyverse)
   library(dplyr)
-  setwd("/gscratch/gebilinu/projects/Survival/TSS/")
+  setwd(".../TSS/")
 }
 
 # Open data
@@ -79,26 +79,26 @@ for (i in 1:nrow(interestP)) {
   matching_rows_1 <- refTSS_v4.1P[refTSS_v4.1P$idents == current_row$idents, ]
   
   if (nrow(matching_rows_1) > 0) {
-    # Encontrar el valor mÌnimo absoluto de diSco
+    # Encontrar el valor m√≠nimo absoluto de diSco
     min_abs_diSco <- min(abs(matching_rows_1$diSco))
     
-    # Filtrar las filas con el valor mÌnimo absoluto de diSco
+    # Filtrar las filas con el valor m√≠nimo absoluto de diSco
     closest_rows <- matching_rows_1[abs(matching_rows_1$diSco) == min_abs_diSco, ]
     
-    # Verificar si hay m·s de una fila con el mÌnimo valor absoluto
+    # Verificar si hay m√°s de una fila con el m√≠nimo valor absoluto
     if (nrow(closest_rows) > 1) {
-      # Inicializar un contador para el mismo valor m·s cercano a 0
+      # Inicializar un contador para el mismo valor m√°s cercano a 0
       count <- 0
     } else {
       # Si solo hay una fila, el contador se mantiene en 0
       count <- NA
     }
     
-    # Iterar sobre las filas filtradas y guardar todas las instancias con el mismo valor m·s cercano a 0
+    # Iterar sobre las filas filtradas y guardar todas las instancias con el mismo valor m√°s cercano a 0
     for (j in seq_len(nrow(closest_rows))) {
       current_row_closest <- closest_rows[j, ]
       
-      # Modificar el nombre solo si hay m·s de una fila con el mÌnimo valor absoluto
+      # Modificar el nombre solo si hay m√°s de una fila con el m√≠nimo valor absoluto
       if (!is.na(count)) {
         # Modificar el nombre para reflejar el contador (A, B, ...)
         modified_name <- paste0(rownames(current_row), "_", letters[count + 1])
@@ -107,7 +107,7 @@ for (i in 1:nrow(interestP)) {
         modified_name <- rownames(current_row)
       }
       
-      # AÒadir GeneID y otras columnas necesarias
+      # A√±adir GeneID y otras columnas necesarias
       current_row_closest$GeneID <- modified_name
       current_row_closest$mean_minus <- current_row_closest$mean - 200
       current_row_closest$mean_plus <- current_row_closest$mean + 1
@@ -115,10 +115,10 @@ for (i in 1:nrow(interestP)) {
       # Unir los resultados al dataframe resultP
       resultP <- rbind(resultP, current_row_closest)
       
-      # Imprimir un mensaje indicando que el GeneID est· anotado en refTSS
+      # Imprimir un mensaje indicando que el GeneID est√° anotado en refTSS
       cat("GeneID", modified_name, "is annotated in refTSS as", current_row$idents, "\n")
       
-      # Incrementar el contador solo si hay m·s de una fila con el mÌnimo valor absoluto
+      # Incrementar el contador solo si hay m√°s de una fila con el m√≠nimo valor absoluto
       if (!is.na(count)) {
         count <- count + 1
       }
@@ -206,26 +206,26 @@ for (i in 1:nrow(interestM)) {
   matching_rows_1 <- refTSS_v4.1M[refTSS_v4.1M$idents == current_row$idents, ]
   
   if (nrow(matching_rows_1) > 0) {
-    # Encontrar el valor mÌnimo absoluto de diSco
+    # Encontrar el valor m√≠nimo absoluto de diSco
     min_abs_diSco <- min(abs(matching_rows_1$diSco))
     
-    # Filtrar las filas con el valor mÌnimo absoluto de diSco
+    # Filtrar las filas con el valor m√≠nimo absoluto de diSco
     closest_rows <- matching_rows_1[abs(matching_rows_1$diSco) == min_abs_diSco, ]
     
-    # Verificar si hay m·s de una fila con el mÌnimo valor absoluto
+    # Verificar si hay m√°s de una fila con el m√≠nimo valor absoluto
     if (nrow(closest_rows) > 1) {
-      # Inicializar un contador para el mismo valor m·s cercano a 0
+      # Inicializar un contador para el mismo valor m√°s cercano a 0
       count <- 0
     } else {
       # Si solo hay una fila, el contador se mantiene en 0
       count <- NA
     }
     
-    # Iterar sobre las filas filtradas y guardar todas las instancias con el mismo valor m·s cercano a 0
+    # Iterar sobre las filas filtradas y guardar todas las instancias con el mismo valor m√°s cercano a 0
     for (j in seq_len(nrow(closest_rows))) {
       current_row_closest <- closest_rows[j, ]
       
-      # Modificar el nombre solo si hay m·s de una fila con el mÌnimo valor absoluto
+      # Modificar el nombre solo si hay m√°s de una fila con el m√≠nimo valor absoluto
       if (!is.na(count)) {
         # Modificar el nombre para reflejar el contador (A, B, ...)
         modified_name <- paste0(rownames(current_row), "_", letters[count + 1])
@@ -234,7 +234,7 @@ for (i in 1:nrow(interestM)) {
         modified_name <- rownames(current_row)
       }
       
-      # AÒadir GeneID y otras columnas necesarias
+      # A√±adir GeneID y otras columnas necesarias
       current_row_closest$GeneID <- modified_name
       current_row_closest$mean_minus <- current_row_closest$mean - 1
       current_row_closest$mean_plus <- current_row_closest$mean + 200
@@ -242,10 +242,10 @@ for (i in 1:nrow(interestM)) {
       # Unir los resultados al dataframe resultM
       resultM <- rbind(resultM, current_row_closest)
       
-      # Imprimir un mensaje indicando que el GeneID est· anotado en refTSS
+      # Imprimir un mensaje indicando que el GeneID est√° anotado en refTSS
       cat("GeneID", modified_name, "is annotated in refTSS as", current_row$idents, "\n")
       
-      # Incrementar el contador solo si hay m·s de una fila con el mÌnimo valor absoluto
+      # Incrementar el contador solo si hay m√°s de una fila con el m√≠nimo valor absoluto
       if (!is.na(count)) {
         count <- count + 1
       }
@@ -333,26 +333,26 @@ for (i in 1:nrow(interest.P)) {
   matching_rows_1 <- refTSS_v4.1P[refTSS_v4.1P$idents == current_row$idents, ]
   
   if (nrow(matching_rows_1) > 0) {
-    # Encontrar el valor mÌnimo absoluto de diSco
+    # Encontrar el valor m√≠nimo absoluto de diSco
     min_abs_diSco <- min(abs(matching_rows_1$diSco))
     
-    # Filtrar las filas con el valor mÌnimo absoluto de diSco
+    # Filtrar las filas con el valor m√≠nimo absoluto de diSco
     closest_rows <- matching_rows_1[abs(matching_rows_1$diSco) == min_abs_diSco, ]
     
-    # Verificar si hay m·s de una fila con el mÌnimo valor absoluto
+    # Verificar si hay m√°s de una fila con el m√≠nimo valor absoluto
     if (nrow(closest_rows) > 1) {
-      # Inicializar un contador para el mismo valor m·s cercano a 0
+      # Inicializar un contador para el mismo valor m√°s cercano a 0
       count <- 0
     } else {
       # Si solo hay una fila, el contador se mantiene en 0
       count <- NA
     }
     
-    # Iterar sobre las filas filtradas y guardar todas las instancias con el mismo valor m·s cercano a 0
+    # Iterar sobre las filas filtradas y guardar todas las instancias con el mismo valor m√°s cercano a 0
     for (j in seq_len(nrow(closest_rows))) {
       current_row_closest <- closest_rows[j, ]
       
-      # Modificar el nombre solo si hay m·s de una fila con el mÌnimo valor absoluto
+      # Modificar el nombre solo si hay m√°s de una fila con el m√≠nimo valor absoluto
       if (!is.na(count)) {
         # Modificar el nombre para reflejar el contador (A, B, ...)
         modified_name <- paste0(rownames(current_row), "_", letters[count + 1])
@@ -361,7 +361,7 @@ for (i in 1:nrow(interest.P)) {
         modified_name <- rownames(current_row)
       }
       
-      # AÒadir GeneID y otras columnas necesarias
+      # A√±adir GeneID y otras columnas necesarias
       current_row_closest$GeneID <- modified_name
       current_row_closest$mean_minus <- current_row_closest$mean - 200
       current_row_closest$mean_plus <- current_row_closest$mean + 1
@@ -369,10 +369,10 @@ for (i in 1:nrow(interest.P)) {
       # Unir los resultados al dataframe result.P
       result.P <- rbind(result.P, current_row_closest)
       
-      # Imprimir un mensaje indicando que el GeneID est· anotado en refTSS
+      # Imprimir un mensaje indicando que el GeneID est√° anotado en refTSS
       cat("GeneID", current_row$GeneID, "is annotated in refTSS as", current_row$idents, "\n")
       
-      # Incrementar el contador solo si hay m·s de una fila con el mÌnimo valor absoluto
+      # Incrementar el contador solo si hay m√°s de una fila con el m√≠nimo valor absoluto
       if (!is.na(count)) {
         count <- count + 1
       }
@@ -460,26 +460,26 @@ for (i in 1:nrow(interest.M)) {
   matching_rows_1 <- refTSS_v4.1M[refTSS_v4.1M$idents == current_row$idents, ]
   
   if (nrow(matching_rows_1) > 0) {
-    # Encontrar el valor mÌnimo absoluto de diSco
+    # Encontrar el valor m√≠nimo absoluto de diSco
     min_abs_diSco <- min(abs(matching_rows_1$diSco))
     
-    # Filtrar las filas con el valor mÌnimo absoluto de diSco
+    # Filtrar las filas con el valor m√≠nimo absoluto de diSco
     closest_rows <- matching_rows_1[abs(matching_rows_1$diSco) == min_abs_diSco, ]
     
-    # Verificar si hay m·s de una fila con el mÌnimo valor absoluto
+    # Verificar si hay m√°s de una fila con el m√≠nimo valor absoluto
     if (nrow(closest_rows) > 1) {
-      # Inicializar un contador para el mismo valor m·s cercano a 0
+      # Inicializar un contador para el mismo valor m√°s cercano a 0
       count <- 0
     } else {
       # Si solo hay una fila, el contador se mantiene en 0
       count <- NA
     }
     
-    # Iterar sobre las filas filtradas y guardar todas las instancias con el mismo valor m·s cercano a 0
+    # Iterar sobre las filas filtradas y guardar todas las instancias con el mismo valor m√°s cercano a 0
     for (j in seq_len(nrow(closest_rows))) {
       current_row_closest <- closest_rows[j, ]
       
-      # Modificar el nombre solo si hay m·s de una fila con el mÌnimo valor absoluto
+      # Modificar el nombre solo si hay m√°s de una fila con el m√≠nimo valor absoluto
       if (!is.na(count)) {
         # Modificar el nombre para reflejar el contador (A, B, ...)
         modified_name <- paste0(rownames(current_row), "_", letters[count + 1])
@@ -488,7 +488,7 @@ for (i in 1:nrow(interest.M)) {
         modified_name <- rownames(current_row)
       }
       
-      # AÒadir GeneID y otras columnas necesarias
+      # A√±adir GeneID y otras columnas necesarias
       current_row_closest$GeneID <- modified_name
       current_row_closest$mean_minus <- current_row_closest$mean - 1
       current_row_closest$mean_plus <- current_row_closest$mean + 200
@@ -496,10 +496,10 @@ for (i in 1:nrow(interest.M)) {
       # Unir los resultados al dataframe result.M
       result.M <- rbind(result.M, current_row_closest)
       
-      # Imprimir un mensaje indicando que el GeneID est· anotado en refTSS
+      # Imprimir un mensaje indicando que el GeneID est√° anotado en refTSS
       cat("GeneID", current_row$GeneID, "is annotated in refTSS as", current_row$idents, "\n")
       
-      # Incrementar el contador solo si hay m·s de una fila con el mÌnimo valor absoluto
+      # Incrementar el contador solo si hay m√°s de una fila con el m√≠nimo valor absoluto
       if (!is.na(count)) {
         count <- count + 1
       }
@@ -570,4 +570,5 @@ result.M_bed$chr <- sub("chr", "", result.M_bed$chr)
 ##################
 
 FlashFry_input <- rbind(resultP_bed, resultM_bed, result.P_bed, result.M_bed)
+
 write.table(FlashFry_input, "FlashFry/FlashFry_input.bed", sep = "\t", col.names = F, row.names = F, quote = FALSE)
